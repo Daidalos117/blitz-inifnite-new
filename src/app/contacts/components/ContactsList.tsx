@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useInfiniteQuery } from "@blitzjs/rpc"
 import getContacts from "../queries/getContacts"
 import React, { useCallback } from "react"
@@ -21,21 +21,20 @@ export const ContactsList = () => {
   )
   const { isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, setQueryData } = extraInfo
 
-
-
   const onOnContactSave = (contactFormValues: { name: string }) => {
     // typescript throws error here, even tho it should be possible to return just old data
-    // setQueryData(oldData => oldData)
+    setQueryData((oldData) => oldData)
     //
     // old data is in fact undefined
-    //setQueryData((oldData) => {
-    // console.log({ oldData })
-    //})
+    setQueryData((oldData) => {
+      console.log({ oldData })
+    })
     //
-    // typed like this but that doesn't work
+    // it's typed like this but that doesn't work
     setQueryData(
-      (oldData) => {
-        console.log({ oldData })
+      {
+        contacts: [{ ...contactFormValues, id: Math.random() }],
+        ...contactPages[0],
       },
       { refetch: false }
     )
