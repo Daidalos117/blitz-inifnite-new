@@ -33,8 +33,8 @@ export const ContactsList = () => {
     // it's typed like this but that doesn't work
     setQueryData(
       {
-        contacts: [{ ...contactFormValues, id: Math.random() }],
         ...contactPages[0],
+        contacts: [{ ...contactFormValues, id: Math.random() }, ...contactPages[0].contacts],
       },
       { refetch: false }
     )
